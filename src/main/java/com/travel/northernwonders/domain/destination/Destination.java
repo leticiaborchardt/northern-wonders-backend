@@ -15,11 +15,11 @@ public class Destination {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String country;
+    private String region;
     private String city;
 
-    public Destination(String country, String city) {
-        this.country = country;
+    public Destination(String region, String city) {
+        this.region = region;
         this.city = city;
     }
 }
