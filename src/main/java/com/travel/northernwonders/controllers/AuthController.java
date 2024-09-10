@@ -2,54 +2,48 @@ package com.travel.northernwonders.controllers;
 
 import com.travel.northernwonders.domain.user.AuthDTO;
 import com.travel.northernwonders.domain.user.LoginResponseDTO;
-import com.travel.northernwonders.domain.user.RegisterDTO;
 import com.travel.northernwonders.domain.user.User;
+import com.travel.northernwonders.domain.user.UserDTO;
 import com.travel.northernwonders.infra.security.TokenService;
-import com.travel.northernwonders.repositories.UserRepository;
+import com.travel.northernwonders.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("auth")
 public class AuthController {
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final TokenService tokenService;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    TokenService tokenService;
+    public AuthController(AuthenticationManager authenticationManager, UserService userService, TokenService tokenService) {
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.tokenService = tokenService;
+    }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthDTO data) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         User user = (User) auth.getPrincipal();
 
-        return ResponseEntity.ok(new LoginResponseDTO(user.getId(), user.getLogin(), user.getRole().getRole(), tokenService.generateToken(user)));
+        return ResponseEntity.ok(new LoginResponseDTO(tokenService.generateToken(user)));
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
-        if (this.userRepository.findByLogin(data.login()) != null) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<String> register(@RequestBody @Valid UserDTO data) {
+        try {
+            userService.createUser(data);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-
-        this.userRepository.save(new User(data.login(), encryptedPassword, data.role()));
-
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/logout")
