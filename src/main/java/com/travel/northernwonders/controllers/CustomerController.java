@@ -1,6 +1,5 @@
 package com.travel.northernwonders.controllers;
 
-import com.travel.northernwonders.domain.customer.Customer;
 import com.travel.northernwonders.domain.customer.CustomerDTO;
 import com.travel.northernwonders.domain.customer.CustomerUserDTO;
 import com.travel.northernwonders.services.CustomerService;
@@ -20,7 +19,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<?> getCustomerByUserId(@PathVariable String userId) {
+    public ResponseEntity<Object> getCustomerByUserId(@PathVariable String userId) {
         try {
             return ResponseEntity.ok(customerService.findCustomerByUserId(userId));
         } catch (EntityNotFoundException e) {
@@ -31,7 +30,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCustomer(@RequestBody @Valid CustomerUserDTO request) {
+    public ResponseEntity<Object> createCustomer(@RequestBody @Valid CustomerUserDTO request) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomerWithUser(request));
         } catch (Exception e) {

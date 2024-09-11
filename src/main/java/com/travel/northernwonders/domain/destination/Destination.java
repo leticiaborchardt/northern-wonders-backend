@@ -1,7 +1,12 @@
 package com.travel.northernwonders.domain.destination;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.travel.northernwonders.domain.travelpackage.TravelPackage;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name = "destinations")
 @Entity()
@@ -16,7 +21,12 @@ public class Destination {
     private String id;
 
     private String region;
+
     private String city;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "destination")
+    private List<TravelPackage> travelPackages;
 
     public Destination(String region, String city) {
         this.region = region;

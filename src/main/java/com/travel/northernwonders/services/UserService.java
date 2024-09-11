@@ -3,6 +3,7 @@ package com.travel.northernwonders.services;
 import com.travel.northernwonders.domain.user.User;
 import com.travel.northernwonders.domain.user.UserDTO;
 import com.travel.northernwonders.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public User createUser(UserDTO user) {
         if (userRepository.findByLogin(user.login()) != null) {
             throw new IllegalArgumentException("User already exists with this login.");
