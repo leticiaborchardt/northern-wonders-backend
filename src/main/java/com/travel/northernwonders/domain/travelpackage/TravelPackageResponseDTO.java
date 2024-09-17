@@ -10,6 +10,7 @@ public record TravelPackageResponseDTO(
         Destination destination,
         String name,
         String description,
+        String imageUrl,
         String hotelName,
         String airline,
         String flightNumber,

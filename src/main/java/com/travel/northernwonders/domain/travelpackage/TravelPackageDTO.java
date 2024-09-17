@@ -11,6 +11,7 @@ public record TravelPackageDTO(
         @NotNull Destination destination,
         @NotBlank String name,
         @NotBlank String description,
+        @NotBlank String imageUrl,
         String hotelName,
         String airline,
         String flightNumber,

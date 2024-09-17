@@ -23,11 +23,22 @@ public class TravelPackage {
     private Destination destination;
 
     private String name;
+
+    @Column(length = 1000)
     private String description;
+
+    @Column(length = 1000)
+    private String imageUrl;
+
     private String hotelName;
+
     private String airline;
+
     private String flightNumber;
+
     private BigDecimal price;
+
     private LocalDate startDate;
+
     private LocalDate endDate;
 }
