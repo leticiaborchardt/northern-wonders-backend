@@ -1,5 +1,6 @@
 package com.travel.northernwonders.infra.security;
 
+import com.travel.northernwonders.domain.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +38,10 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/customer").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/travelpackage").hasAnyRole(UserRole.ADMIN.name())
+                        .requestMatchers(HttpMethod.PUT, "/travelpackage").hasAnyRole(UserRole.ADMIN.name())
+                        .requestMatchers(HttpMethod.DELETE, "/travelpackage").hasAnyRole(UserRole.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/travelpackage").hasAnyRole(UserRole.ADMIN.name(), UserRole.CLIENT.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
