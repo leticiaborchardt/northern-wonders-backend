@@ -27,17 +27,12 @@ public class Booking {
     private TravelPackage travelPackage;
 
     private Integer numberOfPeople;
-    private String paymentMethod;
-    private BigDecimal paymentAmount;
-    private PaymentStatus paymentStatus;
-    private LocalDate bookingDate;
 
-    public Booking(Customer customer, TravelPackage travelPackage, Integer numberOfPeople, String paymentMethod, BigDecimal paymentAmount, LocalDate bookingDate) {
-        this.customer = customer;
-        this.travelPackage = travelPackage;
-        this.numberOfPeople = numberOfPeople;
-        this.paymentMethod = paymentMethod;
-        this.paymentAmount = paymentAmount;
-        this.bookingDate = bookingDate;
-    }
+    private String paymentMethod;
+
+    private BigDecimal paymentAmount;
+
+    private PaymentStatus paymentStatus;
+
+    private LocalDate bookingDate;
 }

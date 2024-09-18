@@ -1,6 +1,5 @@
 package com.travel.northernwonders.services;
 
-import com.travel.northernwonders.domain.customer.Customer;
 import com.travel.northernwonders.domain.destination.Destination;
 import com.travel.northernwonders.domain.destination.DestinationDTO;
 import com.travel.northernwonders.domain.travelpackage.TravelPackage;
@@ -12,7 +11,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TravelPackageService {

@@ -1,7 +1,6 @@
 package com.travel.northernwonders.domain.destination;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.travel.northernwonders.domain.travelpackage.TravelPackage;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Destination {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

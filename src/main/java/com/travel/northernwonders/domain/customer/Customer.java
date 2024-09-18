@@ -22,17 +22,12 @@ public class Customer {
     private User user;
 
     private String name;
-    private String phone;
-    private LocalDate birthDate;
-    private String documentNumber;
-    private String address;
 
-    public Customer(User user, String name, String phone, LocalDate birthDate, String documentNumber, String address) {
-        this.user = user;
-        this.name = name;
-        this.phone = phone;
-        this.birthDate = birthDate;
-        this.documentNumber = documentNumber;
-        this.address = address;
-    }
+    private String phone;
+
+    private LocalDate birthDate;
+
+    private String documentNumber;
+
+    private String address;
 }

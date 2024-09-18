@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class TravelPackage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
