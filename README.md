@@ -2,9 +2,9 @@
 <h1 align="center" style="font-weight: bold;">Northern Wonders 🌍</h1>
 
 <p align="center">
-<a href="#tech">Technologies</a>
-<a href="#started">Getting Started</a>
-<a href="#routes">API Endpoints</a>
+<a href="#tech">Technologies</a> |
+<a href="#started">Getting Started</a> |
+<a href="#routes">API Endpoints</a> |
 <a href="#author">Authorship</a>
 </p>
 
@@ -17,8 +17,6 @@
 - PostgreSQL
 
 <h2 id="started">🚀 Getting started</h2>
-
-Here you describe how to run your project locally
 
 <h3>Cloning</h3>
 
